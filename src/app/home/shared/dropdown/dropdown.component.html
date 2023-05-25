@@ -1,0 +1,14 @@
+<div class="relative">
+    <button (click)="expanded = !expanded" type="button" class="-m-1.5 flex items-center p-1.5" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+        <ng-content></ng-content>
+    </button>
+    <div [ngClass]="{
+        'transition ease-out duration-100': true,
+        'transition ease-in duration-75': true,
+        'transform opacity-100 scale-100': expanded,
+        'transform opacity-0 scale-95': !expanded,
+        'absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none': true
+    }" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+        <button (click)="handleClick(item.onClick)" *ngFor="let item of items" href="#" class="block px-3 w-full text-start py-1 text-sm leading-6 text-gray-900" role="menuitem" tabindex="-1">{{ item.title }}</button>
+    </div>
+</div>

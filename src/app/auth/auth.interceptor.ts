@@ -1,0 +1,24 @@
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable, map, take, exhaustMap } from "rxjs";
+import { AuthService } from "./auth.service";
+
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+    constructor(private authService: AuthService) {}
+
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        return this.authService._token.pipe(
+            take(1),
+            exhaustMap(token => {
+                if(token) {
+                    const newRequest = req.clone({
+                        headers: req.headers.set('x-hasura-admin-secret', token)
+                    })
+                    return next.handle(newRequest)
+                }
+                return next.handle(req)
+            })
+        )
+    }
+}

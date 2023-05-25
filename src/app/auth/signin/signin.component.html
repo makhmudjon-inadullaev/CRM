@@ -1,0 +1,58 @@
+  <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full -mt-16 sm:max-w-sm">
+      <img class="mx-auto h-36 w-auto" src="https://avatars.githubusercontent.com/u/5629232" alt="Akvelon">
+      <h2 class="-mt-8 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
+    </div>
+  
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form class="space-y-6" (keyup.enter)="f.valid && handleSubmit(f)" (ngSubmit)="handleSubmit(f)" #f="ngForm">
+        <div>
+          <span *ngIf="authError" class="text-xs text-[#a94442]">{{ authError }}</span>
+          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+          <div class="mt-2">
+            <input
+              ngModel
+              required
+              email
+              #email="ngModel"
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6">
+              <span *ngIf="!email.valid && email.touched" class="text-xs text-[#a94442]">Please enter valid email</span>
+            </div>
+        </div>
+  
+        <div>
+          <div class="flex items-center justify-between">
+            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+            <div class="text-sm">
+              <a href="#" class="font-semibold text-primary hover:text-primary-hover">Forgot password?</a>
+            </div>
+          </div>
+          <div class="mt-2">
+            <input
+              ngModel
+              required
+              #password="ngModel"
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6">
+              <span *ngIf="!password.valid && password.touched" class="text-xs text-[#a94442]">Please enter valid password</span>
+            </div>
+        </div>
+  
+        <div>
+          <button type="submit" [disabled]="!f.valid" class="button">Sign in</button>
+        </div>
+      </form>
+  
+      <p class="mt-10 text-center text-sm text-gray-500">
+        Not a member?
+        <a href="#" class="font-semibold leading-6 text-primary hover:text-primary-hover">Start a 14 day free trial</a>
+      </p>
+    </div>
+  </div>

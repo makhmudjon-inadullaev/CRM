@@ -1,0 +1,50 @@
+<div>
+    <div class="grid grid-cols-2">
+        <form class="flex flex-col gap-2" (ngSubmit)="handleSubmit()" #simpleForm="ngForm">
+            <div class="gap-2 flex flex-col" ngModelGroup="info" #infoGroup="ngModelGroup">
+                <span *ngIf="!username.valid && username.touched" class="text-xs text-red-600">Enter valid username</span>
+                <input
+                    ngModel
+                    name="username"
+                    type="text"
+                    required
+                    #username="ngModel"
+                    placeholder="Username">
+                <span *ngIf="!email.valid && email.touched" class="text-xs text-red-600">Enter valid email</span>
+                <input
+                    ngModel
+                    name="email"
+                    required
+                    email
+                    #email="ngModel"
+                    type="email"
+                    placeholder="Email">
+            </div>
+            <div class="gap-2 flex flex-col" ngModelGroup="passwords" #infoPassword="ngModelGroup">
+                <span *ngIf="!password.valid && password.touched" class="text-xs text-red-600">Enter valid password</span>
+                <input
+                    ngModel
+                    name="password"
+                    type="password"
+                    required
+                    #password="ngModel"
+                    placeholder="Password">
+                <span *ngIf="(passwordAgain.value !== password.value) && passwordAgain.touched" class="text-xs text-red-600">This password must be equal to above</span>
+                <input
+                    ngModel
+                    name="passwordAgain"
+                    type="password"
+                    required
+                    [ngClass]="{
+                        'custom-invalid': (passwordAgain.value !== password.value) && passwordAgain.touched
+                    }"
+                    #passwordAgain="ngModel"
+                    placeholder="Enter your password again">
+            </div>
+            <button type="submit" class="button" [disabled]="(!infoGroup.valid || !infoPassword.valid) || (passwordAgain.value !== password.value)">Submit</button>
+        </form>
+        <div class="p-8">
+            {{ simpleFormResult | json }}
+        </div>
+    </div>
+</div>

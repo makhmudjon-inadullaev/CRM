@@ -1,0 +1,62 @@
+<div [ngClass]="{
+    'relative lg:hidden': true,
+    'z-50': expanded,
+}" role="dialog" aria-modal="true">
+    <div [ngClass]="{
+        'transition-opacity ease-linear duration-300': true,
+        'fixed inset-0 bg-gray-900/80': true,
+        'opacity-100': expanded,
+        'opacity-0': !expanded
+    }"></div>
+
+    <div class="fixed inset-0 flex">
+        <div [ngClass]="{
+            'relative mr-16 flex w-full max-w-xs flex-1': true,
+            'transition ease-in-out duration-300 transform': true,
+            'translate-x-0': expanded,
+            '-translate-x-full': !expanded
+        }">
+        <div [ngClass]="{
+            'absolute left-full top-0 flex w-16 justify-center pt-5': true,
+            'ease-in-out duration-300': true,
+            'opacity-100': expanded,
+            'opacity-0': !expanded
+        }">
+            <button (click)="expanded = !expanded" type="button" class="-m-2.5 p-2.5">
+            <span class="sr-only">Close sidebar</span>
+            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            </button>
+        </div>
+
+        <!-- Sidebar component -->
+        <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
+            <div class="flex h-16 shrink-0 items-center">
+            <img class="h-24 mt-8 w-auto" src="https://avatars.githubusercontent.com/u/5629232" alt="Your Company">
+            </div>
+            <nav class="flex flex-1 flex-col">
+            <ul role="list" class="flex flex-1 flex-col gap-y-7">
+                <li>
+                <ul role="list" class="-mx-2 space-y-1">
+                    <li *ngFor="let item of menu">
+                        <a [routerLink]="item.path" [routerLinkActiveOptions]="{ exact: item.path === '/'}" routerLinkActive="bg-gray-50 text-primary" class="text-gray-700 cursor-pointer hover:text-primary hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                            <app-sidebar-icon [exact]="item.path === '/'" [icon]="item.icon"></app-sidebar-icon>
+                            {{ item.title }}
+                        </a>
+                    </li>
+                </ul>
+                </li>
+
+                <li class="mt-auto">
+                    <a routerLink="/settings" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="bg-gray-50 text-primary" class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-primary">
+                        <app-sidebar-icon icon="settings"></app-sidebar-icon>
+                        Settings
+                    </a>
+                </li>
+            </ul>
+            </nav>
+        </div>
+        </div>
+    </div>
+</div>

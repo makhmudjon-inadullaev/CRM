@@ -1,0 +1,20 @@
+<div class="grid grid-cols-4">
+    <div class="flex flex-col">
+        <span class="font-bold text-lg">Uppercase pipe [build-in]</span>
+        <span>{{ uppercasePipeDemo| uppercase }}</span>
+    </div>
+    <div class="flex flex-col">
+        <span class="font-bold text-lg">Date pipe [build-in]</span>
+        <span>{{ datePipeDemo | date:'fullDate' }}</span>
+        <span>{{ datePipeDemo | date:'dd-MM-YYYY HH:mm' }}</span>
+    </div>
+    <div class="flex flex-col">
+        <span class="font-bold text-lg">Async pipe</span>
+        <span>{{ (asyncPipeDemo | async) || 'InProgress...' }}</span>
+    </div>
+    <div class="flex flex-col">
+        <span class="font-bold text-lg">Filter pipe</span>
+        <input type="text" placeholder="Enter filter text" [(ngModel)]="filterPipeDemoFilter">
+        <span *ngFor="let item of filterPipeDemoArray | filter:filterPipeDemoFilter">{{ item }}</span>
+    </div>
+</div>

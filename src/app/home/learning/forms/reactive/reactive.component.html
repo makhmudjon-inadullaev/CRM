@@ -1,0 +1,26 @@
+<div class="grid grid-cols-2">
+    <form [formGroup]="simpleFormGroup" (ngSubmit)="handleSubmit()">
+        <div formArrayName="hobbies" class="mb-4">
+            <h1 class="font-bold text-xl">Hobbies</h1>
+            <div class="flex flex-col gap-2 my-2">
+                <div class="flex" *ngFor="let hobby of hobbies; let i = index">
+                    <input type="text" class="w-full" placeholder="Hobby name" [formControlName]="i">
+                    <button (click)="removeHobby(i)" class="text-red-400 px-4">Delete</button>
+                </div>
+            </div>
+            <button (click)="addAHobby()" type="button" class="button">Add a hobby</button>
+        </div>
+        <div formGroupName="info" class="flex flex-col gap-2 mb-2">
+            <input type="text" formControlName="name" placeholder="Name">
+            <input type="email" formControlName="email" placeholder="Email">
+        </div>
+        <div formGroupName="passwords" class="flex flex-col gap-2">
+            <input formControlName="password" type="password" placeholder="Password">
+            <input formControlName="confirmPassword" type="password" placeholder="Confirm password">
+        </div>
+        <button type="submit" class="button mt-4">Submit</button>
+    </form>
+    <div>
+        {{ simpleFormResult | json }}
+    </div>
+</div>
