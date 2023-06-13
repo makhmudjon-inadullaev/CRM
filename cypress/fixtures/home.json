@@ -1,0 +1,23 @@
+{
+    "auth": {
+        "email": "admin@akvelon.com",
+        "password": "admin"
+    },
+    "team": {
+        "title": "Meet our leadership",
+        "description": "Our team shares a common vision of helping businesses around the globe make an impact by powering their software engineering initiatives. We foster knowledge-sharing culture and cumulative innovation to deliver proven results for our clients."
+    },
+    "projects": {
+        "title": "Projects",
+        "description": "You haven’t created a project yet. Get started by selecting a template or start from an empty project."
+    },
+    "documents": {
+        "title": "Add team members to your documents",
+        "description": "You haven’t created and added any team members to your documents yet."
+    },
+    "learning": {
+        "forms": "Forms are used to collect data from the user. There are two types of forms in Angular: Template Driven and Reactive.",
+        "pipes": "Pipes are a way to transform data in Angular templates. Pipes are used in interpolation and binding expressions with the pipe operator, |.",
+        "http": "HTTP is a protocol that allows us to communicate with remote servers. Angular has a built-in HTTP client that allows us to communicate with remote servers using the HTTP protocol."
+    }
+}
